@@ -1,0 +1,53 @@
+# NeoGolio
+
+> An AI-readable, opinionated portfolio template for developers in the AI age.
+
+A few sentences about who you are, what kinds of problems you take on, and what you care about. Be specific. Generic bios get skipped by humans and indexed flatly by AI.
+
+## Author
+
+- Name: Your Name
+- Role: Software Engineer
+- Location: City, Country
+- Email: you@example.com
+- Github: https://github.com/your-username
+- Linkedin: https://linkedin.com/in/your-username
+
+## Primary pages
+
+- [Homepage](https://example.com/): identity, recent experience, featured projects, certifications, recent articles
+- [CV](https://example.com/cv): full work history, education, certifications, and skills as structured HTML (emits Person.hasOccupation + Person.hasCredential JSON-LD)
+- [Projects](https://example.com/projects): full project catalogue + honest archive of abandoned work
+- [Articles](https://example.com/articles): long-form writing
+- [Certifications](https://example.com/certificates): professional credentials with verification links (emits ItemList of EducationalOccupationalCredential JSON-LD)
+- [Network](https://example.com/network): people I'd vouch for, with mailto intro requests (emits ItemList of Person JSON-LD)
+- [Uses](https://example.com/uses): tools, stack, hardware
+- [Now](https://example.com/now): what the author is focused on this season
+
+## Featured projects
+
+- [Search Engine for Internal Docs](https://example.com/projects/example-search-engine): Built an internal semantic search engine over 2.4M company docs using local embeddings and a custom HNSW index. Query latency p95 under 80ms.
+- [Real-Time Event Pipeline](https://example.com/projects/example-event-pipeline): A 12M-req/day event ingest and replay system built on Kafka and Postgres, with per-tenant schema evolution and deterministic replay.
+- [Incident Response Bot](https://example.com/projects/example-incident-bot): A Slack bot that runs incident response on autopilot — paging, roles, comms templates, post-mortem scaffolding. Used for 280+ incidents across 4 teams.
+- [pgwatch — Postgres slow-query CLI](https://example.com/projects/example-cli-tool): A terminal tool that streams pg_stat_statements into a live table and lets you pin queries to a hotlist. Open source, ~600 stars.
+
+## Articles
+
+- [AI-Readable HTML: What the Scrapers Actually See](https://example.com/articles/ai-readable-html): A look at the gap between what humans see on a portfolio site and what an AI fetch returns. With receipts.
+- [Why Cloudflare Pages is the Right Call for Almost Every Developer Portfolio](https://example.com/articles/cloudflare-pages-is-the-call): A technical, opinionated case for choosing Cloudflare Pages over Vercel or Netlify for a developer portfolio in 2026.
+- [The Honest Portfolio: What I Learned from My Abandoned Projects](https://example.com/articles/honest-portfolio): A post-mortem on two side projects I shipped halfway and walked away from. Sharing the lessons publicly because everyone has them and nobody writes about them.
+- [Postgres Slow-Query Debugging: A Field Guide](https://example.com/articles/postgres-debugging): The set of commands and patterns I reach for when a Postgres query has gone bad in production. Most of this is not in the official docs.
+- [Welcome to Neofolio](https://example.com/articles/welcome-to-neofolio): An opinionated, AI-readable portfolio template for developers. Why it exists and how to use it.
+
+## Active certifications
+
+- [AWS Certified Solutions Architect – Associate](https://www.credly.com/badges/example-aws-saa) — Amazon Web Services, issued 2025-04-15, valid until 2028-04-15
+- [Certified Kubernetes Application Developer (CKAD)](https://training.linuxfoundation.org/certification/verify/) — Cloud Native Computing Foundation, issued 2024-09-22, valid until 2027-09-22
+- [HashiCorp Certified: Terraform Associate (003)](https://www.credly.com/badges/example-terraform) — HashiCorp, issued 2024-06-08, valid until 2026-06-08
+- [CompTIA Security+ (SY0-701)](https://www.certmetrics.com/comptia/public/verification.aspx) — CompTIA, issued 2024-02-12, valid until 2027-02-12
+
+## Feeds
+
+- RSS: https://example.com/rss.xml
+- JSON Feed: https://example.com/feed.json
+- Sitemap: https://example.com/sitemap.xml
