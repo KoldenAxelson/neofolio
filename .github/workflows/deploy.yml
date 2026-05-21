@@ -1,0 +1,61 @@
+name: Deploy to GitHub Pages
+
+# Builds the site with the Node-free OX toolchain (Hugo + Tailwind standalone
+# binaries via `make setup`; TypeScript compiles inside Hugo's esbuild) and
+# publishes it to GitHub Pages. The base URL — including any project-site
+# sub-path — is supplied by actions/configure-pages, so a fork "just works"
+# with no edits: every absolute URL (links, JSON-LD @ids, feeds, sitemap)
+# derives from it.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; let an in-progress run finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so :git lastmod dates resolve
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Install toolchain (pinned Hugo + Tailwind binaries)
+        run: make setup
+
+      - name: Build CSS
+        run: ./bin/tailwindcss -i assets/css/main.css -o assets/css/app.css --minify
+
+      - name: Build site
+        run: ./bin/hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

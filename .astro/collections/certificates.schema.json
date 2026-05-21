@@ -1,0 +1,97 @@
+{
+  "$ref": "#/definitions/certificates",
+  "definitions": {
+    "certificates": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "issuerUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "issueDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "expirationDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "credentialId": {
+          "type": "string"
+        },
+        "verifyUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "badge": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "thoughts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "issuer",
+        "issueDate"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
