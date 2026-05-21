@@ -1,16 +1,17 @@
 # ---------------------------------------------------------------------------
-# NeoGolio — Site config (port of Neofolio's src/config.ts)
+# Neofolio — Site config
 #
 # Forkers: edit THIS file first. Everything user-facing reads from here.
 # Don't hard-code your name, links, or bio anywhere else.
 # ---------------------------------------------------------------------------
 
-# Canonical absolute URL. No trailing slash. (Hugo's baseURL in hugo.toml
-# should match; this value is what JSON-LD @ids and feeds are built from.)
-url: "https://example.com"
+# Informational canonical URL. The live site's URLs (canonical, JSON-LD @ids,
+# feeds, sitemap) all derive from Hugo's `baseURL` — which the deploy workflow
+# sets automatically — so this value isn't load-bearing; it documents intent.
+url: "https://koldenaxelson.github.io/neofolio"
 
 # Site title — used in <title>, OpenGraph, and JSON-LD WebSite name.
-title: "NeoGolio"
+title: "Neofolio"
 
 # Tagline / meta description. Keep under 160 chars.
 description: "An AI-readable, opinionated portfolio template for developers in the AI age."
