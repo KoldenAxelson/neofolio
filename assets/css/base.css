@@ -16,6 +16,21 @@
 /* Avoids a third-party (rsms.me) request in the critical path.        */
 /* font-display: swap → paint in fallback first, swap to Inter when     */
 /* ready (prevents FOIT, accepts a small FOUT).                        */
+/*                                                                     */
+/* The shipped InterVariable.woff2 files are SUBSET to Latin scripts   */
+/* (Basic + Latin-1 + Extended-A/B + Extended-Additional, plus         */
+/* punctuation/currency/arrows) to keep the preloaded font small —     */
+/* ~210KB instead of ~350KB, which directly improves LCP. Both         */
+/* variable axes (wght, opsz) are preserved. This covers Western,      */
+/* Central/Eastern European, Baltic, Turkish, and Vietnamese Latin.    */
+/*                                                                     */
+/* FORKERS writing in non-Latin scripts (Greek, Cyrillic, CJK, etc.)   */
+/* must restore a wider font, or those characters fall back to the     */
+/* system sans. Re-subset from the full Inter with:                    */
+/*   pyftsubset InterVariable.woff2 --output-file=… --flavor=woff2 \   */
+/*     --layout-features='*' --unicodes='U+0000-024F,U+0370-03FF,…'    */
+/* (add the ranges you need), or just drop the full InterVariable      */
+/* from rsms.me/inter back into static/fonts/ to support everything.   */
 /* ------------------------------------------------------------------ */
 
 @font-face {
