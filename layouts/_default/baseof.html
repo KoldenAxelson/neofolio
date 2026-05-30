@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content="Hugo {{ hugo.Version }}" />
 
-    {{/* Self-hosted variable fonts — preload the two most-used faces. */}}
+    {{/* Self-hosted variable fonts. Preload ONLY Inter — it renders the LCP
+         element (the hero/bio text), so getting it in early pulls LCP forward.
+         JetBrains Mono (nav, code chips, labels) is not LCP-critical and loads
+         via @font-face discovery with font-display:swap; preloading it too
+         would just compete with Inter for the first bytes on throttled mobile. */}}
     <link rel="preload" href="{{ partial "func/url.html" "/fonts/InterVariable.woff2" }}" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="{{ partial "func/url.html" "/fonts/JetBrainsMono-Variable.woff2" }}" as="font" type="font/woff2" crossorigin />
 
     <link rel="icon" type="image/svg+xml" href="{{ partial "func/url.html" "/favicon.svg" }}" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.Data.site.title }}" href="{{ partial "func/url.html" "/rss.xml" }}" />
     <link rel="alternate" type="application/feed+json" title="{{ site.Data.site.title }} (JSON Feed)" href="{{ partial "func/url.html" "/feed.json" }}" />
+    <link rel="alternate" type="text/plain" title="{{ site.Data.site.title }} (llms.txt)" href="{{ partial "func/url.html" "/llms.txt" }}" />
 
     {{/* Theme-color tints match the palette (light / dark). */}}
     <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
@@ -19,9 +23,13 @@
 
     {{ partial "head/seo.html" . }}
 
-    {{/* CSS: single bundle built by the Tailwind standalone binary. */}}
-    {{ $css := resources.Get "css/app.css" | fingerprint }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+    {{/* CSS: single bundle built by the Tailwind standalone binary. Inlined
+         (~10KB gzipped) so it never becomes a render-blocking request — this
+         removes the round-trip that otherwise delays LCP on throttled mobile.
+         hx-boost swaps only <body>, so this <style> persists across in-session
+         navigation. */}}
+    {{ $css := resources.Get "css/app.css" | minify }}
+    <style>{{ $css.Content | safeCSS }}</style>
 
     {{/* htmx (self-hosted) + our interactivity bundle load from <head> so they
          persist across hx-boost body swaps. The TS bundle is one unified,
